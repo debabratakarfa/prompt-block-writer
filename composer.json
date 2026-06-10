@@ -1,0 +1,30 @@
+{
+    "name": "debabratakarfa/prompt-block-writer",
+    "description": "Generates post content from a prompt using the WordPress Abilities API and inserts it as native Gutenberg blocks.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Debabrata Karfa",
+            "homepage": "https://profiles.wordpress.org/dkarfa",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "DebabrataKarfa\\PromptBlockWriter\\": "includes/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "extra": {
+        "wordpress-plugin": {
+            "slug": "prompt-block-writer"
+        }
+    }
+}

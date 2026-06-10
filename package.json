@@ -1,0 +1,13 @@
+{
+  "name": "prompt-block-writer",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  },
+  "dependencies": {
+    "marked": "^18.0.5"
+  }
+}
