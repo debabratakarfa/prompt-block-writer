@@ -59,7 +59,7 @@ add_action(
 			return;
 		}
 
-		require_once BSP_PLUGIN_DIR . 'includes/Ability.php';
+		require_once BSP_PLUGIN_DIR . 'includes/class-ability.php';
 
 		// Register the ability when the Abilities API boots.
 		add_action(
