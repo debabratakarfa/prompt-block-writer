@@ -1,5 +1,5 @@
 {
-  "name": "prompt-block-writer",
+  "name": "blocksmith-prompts",
   "scripts": {
     "build": "wp-scripts build",
     "start": "wp-scripts start"

@@ -1,15 +1,15 @@
 <?php
 /**
  * @wordpress-plugin
- * Plugin Name: Prompt Block Writer
- * Plugin URI: https://github.com/debabratakarfa/ai.deb.im
+ * Plugin Name: Blocksmith Prompts
+ * Plugin URI: https://github.com/debabratakarfa/blocksmith-prompts
  * Description: Generates post content from a prompt using the WordPress Abilities API and inserts it as native Gutenberg blocks.
  * Version: 1.0.0
  * Requires at least: 7.0
  * Requires PHP: 7.4
  * Author: Debabrata Karfa
  * Author URI: https://profiles.wordpress.org/dkarfa
- * Text Domain: prompt-block-writer
+ * Text Domain: blocksmith-prompts
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -18,9 +18,9 @@ declare(strict_types=1);
 
 defined("ABSPATH") || exit();
 
-define("PBW_PLUGIN_DIR", plugin_dir_path(__FILE__));
-define("PBW_PLUGIN_URL", plugin_dir_url(__FILE__));
-define("PBW_VERSION", "1.0.0");
+define("BSP_PLUGIN_DIR", plugin_dir_path(__FILE__));
+define("BSP_PLUGIN_URL", plugin_dir_url(__FILE__));
+define("BSP_VERSION", "1.0.0");
 
 // Check the AI system exists before proceeding.
 add_action("plugins_loaded", function () {
@@ -37,12 +37,12 @@ add_action("plugins_loaded", function () {
         add_action("admin_notices", function () use ($has_core_ai) {
             $message = $has_core_ai
                 ? esc_html__(
-                    "Prompt Block Writer requires the WordPress AI plugin to be installed and active.",
-                    "prompt-block-writer",
+                    "Blocksmith Prompts requires the WordPress AI plugin to be installed and active.",
+                    "blocksmith-prompts",
                 )
                 : esc_html__(
-                    "Prompt Block Writer requires WordPress AI support to be enabled.",
-                    "prompt-block-writer",
+                    "Blocksmith Prompts requires WordPress AI support to be enabled.",
+                    "blocksmith-prompts",
                 );
 
             wp_admin_notice($message, ["type" => "error"]);
@@ -50,17 +50,17 @@ add_action("plugins_loaded", function () {
         return;
     }
 
-    require_once PBW_PLUGIN_DIR . "includes/Ability.php";
+    require_once BSP_PLUGIN_DIR . "includes/Ability.php";
 
     // Register the ability when the Abilities API boots.
     add_action("wp_abilities_api_init", function () {
-        wp_register_ability("prompt-block-writer/generate", [
-            "label" => __("Content Generator", "prompt-block-writer"),
+        wp_register_ability("blocksmith-prompts/generate", [
+            "label" => __("Content Generator", "blocksmith-prompts"),
             "description" => __(
                 "Generates content from post context.",
-                "prompt-block-writer",
+                "blocksmith-prompts",
             ),
-            "ability_class" => \DebabrataKarfa\PromptBlockWriter\Ability::class,
+            "ability_class" => \DebabrataKarfa\BlocksmithPrompts\Ability::class,
         ]);
     });
 
@@ -80,7 +80,7 @@ add_action("plugins_loaded", function () {
             return;
         }
 
-        $asset_file = PBW_PLUGIN_DIR . "build/index.asset.php";
+        $asset_file = BSP_PLUGIN_DIR . "build/index.asset.php";
         if (!file_exists($asset_file)) {
             return;
         }
@@ -98,8 +98,8 @@ add_action("plugins_loaded", function () {
         );
 
         wp_enqueue_script(
-            "prompt-block-writer-editor",
-            PBW_PLUGIN_URL . "build/index.js",
+            "blocksmith-prompts-editor",
+            BSP_PLUGIN_URL . "build/index.js",
             $dependencies,
             $asset["version"],
             [
@@ -118,7 +118,7 @@ add_action("plugins_loaded", function () {
         $provider_data = \WordPress\AI\get_provider_availability_data();
 
         wp_add_inline_script(
-            "prompt-block-writer-editor",
+            "blocksmith-prompts-editor",
             'window.aiProviderData=Object.assign(window.aiProviderData||{},'
                 . wp_json_encode($provider_data)
                 . ');',

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DebabrataKarfa\PromptBlockWriter;
+namespace DebabrataKarfa\BlocksmithPrompts;
 
 use WP_Error;
 use WordPress\AI\Abstracts\Abstract_Ability;

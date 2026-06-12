@@ -1,5 +1,5 @@
 {
-    "name": "debabratakarfa/prompt-block-writer",
+    "name": "debabratakarfa/blocksmith-prompts",
     "description": "Generates post content from a prompt using the WordPress Abilities API and inserts it as native Gutenberg blocks.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DebabrataKarfa\\PromptBlockWriter\\": "includes/"
+            "DebabrataKarfa\\BlocksmithPrompts\\": "includes/"
         }
     },
     "config": {
@@ -24,7 +24,7 @@
     },
     "extra": {
         "wordpress-plugin": {
-            "slug": "prompt-block-writer"
+            "slug": "blocksmith-prompts"
         }
     }
 }

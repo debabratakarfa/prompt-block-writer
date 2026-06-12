@@ -10,8 +10,8 @@ import { __ } from "@wordpress/i18n";
 import { store as noticesStore } from "@wordpress/notices";
 import apiFetch from "@wordpress/api-fetch";
 
-const ABILITY = "prompt-block-writer/generate";
-const PROVIDER_NOTICE_ID = "prompt-block-writer-provider-error";
+const ABILITY = "blocksmith-prompts/generate";
+const PROVIDER_NOTICE_ID = "blocksmith-prompts-provider-error";
 
 function isAbilityClientFallbackError(error) {
   if (!error || typeof error !== "object") {
@@ -69,14 +69,14 @@ function ensureProviderAvailable(createErrorNotice) {
   }
 
   createErrorNotice(
-    __("This feature requires an AI Connector to function properly.", "prompt-block-writer"),
+    __("This feature requires an AI Connector to function properly.", "blocksmith-prompts"),
     {
       id: PROVIDER_NOTICE_ID,
       isDismissible: true,
       actions: connectorsUrl
         ? [
             {
-              label: __("Manage Connectors", "prompt-block-writer"),
+              label: __("Manage Connectors", "blocksmith-prompts"),
               url: connectorsUrl,
             },
           ]
@@ -103,7 +103,7 @@ function GenerateContentModal({
     const trimmedPrompt = prompt.trim();
 
     if (!trimmedPrompt) {
-      setError(__("Please enter a prompt.", "prompt-block-writer"));
+      setError(__("Please enter a prompt.", "blocksmith-prompts"));
       return;
     }
 
@@ -122,7 +122,7 @@ function GenerateContentModal({
       });
       setGenerated(typeof output === "string" ? output : "");
     } catch (err) {
-      setError(err?.message ?? __("Generation failed.", "prompt-block-writer"));
+      setError(err?.message ?? __("Generation failed.", "blocksmith-prompts"));
     } finally {
       setLoading(false);
     }
@@ -151,31 +151,31 @@ function GenerateContentModal({
   }
 
   const generateLabel = generated
-    ? __("Regenerate", "prompt-block-writer")
-    : __("Generate", "prompt-block-writer");
+    ? __("Regenerate", "blocksmith-prompts")
+    : __("Generate", "blocksmith-prompts");
 
   return (
     <Modal
-      title={__("AI Content Generator", "prompt-block-writer")}
+      title={__("AI Content Generator", "blocksmith-prompts")}
       onRequestClose={handleClose}
-      className="prompt-block-writer-modal"
+      className="blocksmith-prompts-modal"
       size="medium"
     >
-      <div className="prompt-block-writer-modal__content">
+      <div className="blocksmith-prompts-modal__content">
         <TextareaControl
-          label={__("Prompt", "prompt-block-writer")}
+          label={__("Prompt", "blocksmith-prompts")}
           value={prompt}
           onChange={setPrompt}
           rows={4}
           help={__(
             "Describe what you want written. Current post content is used as context when available.",
-            "prompt-block-writer",
+            "blocksmith-prompts",
           )}
         />
 
         {generated && (
           <TextareaControl
-            label={__("Generated content", "prompt-block-writer")}
+            label={__("Generated content", "blocksmith-prompts")}
             value={generated}
             onChange={setGenerated}
             rows={10}
@@ -183,19 +183,19 @@ function GenerateContentModal({
         )}
 
         {error && (
-          <p className="prompt-block-writer-modal__error" style={{ color: "#cc1818" }}>
+          <p className="blocksmith-prompts-modal__error" style={{ color: "#cc1818" }}>
             {error}
           </p>
         )}
 
-        <div className="prompt-block-writer-modal__actions" style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+        <div className="blocksmith-prompts-modal__actions" style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
           {generated ? (
             <Button
               variant="primary"
               onClick={handleInsert}
               disabled={!generated.trim()}
             >
-              {__("Insert into editor", "prompt-block-writer")}
+              {__("Insert into editor", "blocksmith-prompts")}
             </Button>
           ) : null}
 
@@ -206,12 +206,12 @@ function GenerateContentModal({
             isBusy={loading}
           >
             {loading
-              ? __("Generating…", "prompt-block-writer")
+              ? __("Generating…", "blocksmith-prompts")
               : generateLabel}
           </Button>
 
           <Button variant="tertiary" onClick={handleClose}>
-            {__("Cancel", "prompt-block-writer")}
+            {__("Cancel", "blocksmith-prompts")}
           </Button>
         </div>
       </div>
@@ -246,12 +246,12 @@ function ContentGeneratorPanel() {
 
   return (
     <PluginDocumentSettingPanel
-      name="prompt-block-writer-panel"
-      title={__("AI Content Generator", "prompt-block-writer")}
-      className="prompt-block-writer-settings-panel"
+      name="blocksmith-prompts-panel"
+      title={__("AI Content Generator", "blocksmith-prompts")}
+      className="blocksmith-prompts-settings-panel"
     >
       <Button variant="primary" onClick={handleOpenModal}>
-        {__("Generate from context", "prompt-block-writer")}
+        {__("Generate from context", "blocksmith-prompts")}
       </Button>
 
       <GenerateContentModal
@@ -264,6 +264,6 @@ function ContentGeneratorPanel() {
   );
 }
 
-registerPlugin("prompt-block-writer", {
+registerPlugin("blocksmith-prompts", {
   render: () => <ContentGeneratorPanel />,
 });

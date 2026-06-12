@@ -1,4 +1,4 @@
-=== Prompt Block Writer ===
+=== Blocksmith Prompts ===
 Contributors: dkarfa
 Tags: ai, block editor, content generation, gutenberg, writing
 Requires at least: 7.0
@@ -12,7 +12,7 @@ Generate post content from a prompt using the WordPress Abilities API and insert
 
 == Description ==
 
-Prompt Block Writer adds an **AI Content Generator** panel to the Gutenberg block editor sidebar. Write a prompt, optionally use your existing post as context, review the generated content, and insert it directly into the editor as properly structured native blocks — headings, lists, paragraphs, and more.
+Blocksmith Prompts adds an **AI Content Generator** panel to the Gutenberg block editor sidebar. Write a prompt, optionally use your existing post as context, review the generated content, and insert it directly into the editor as properly structured native blocks — headings, lists, paragraphs, and more.
 
 **How it works:**
 
@@ -42,8 +42,8 @@ This plugin requires:
 
 == Installation ==
 
-1. Upload the `prompt-block-writer` folder to `/wp-content/plugins/`.
-2. Activate **Prompt Block Writer** from the **Plugins** screen.
+1. Upload the `blocksmith-prompts` folder to `/wp-content/plugins/`.
+2. Activate **Blocksmith Prompts** from the **Plugins** screen.
 3. Ensure the **AI** plugin is installed and active.
 4. Configure an AI connector under **Settings → Connectors**.
 
@@ -51,7 +51,7 @@ This plugin requires:
 
 = Does this plugin work without the WordPress AI plugin? =
 
-No. Prompt Block Writer uses the WordPress Abilities API, which is provided by the WordPress AI feature plugin. Both must be active.
+No. Blocksmith Prompts uses the WordPress Abilities API, which is provided by the WordPress AI feature plugin. Both must be active.
 
 = Which AI providers are supported? =
 

@@ -1,4 +1,4 @@
-# Prompt Block Writer
+# Blocksmith Prompts
 
 A WordPress block editor plugin that generates post content from a prompt using the WordPress Abilities API, then inserts it as native Gutenberg blocks.
 
@@ -9,7 +9,7 @@ A WordPress block editor plugin that generates post content from a prompt using 
 - **Post context** — Current post content is sent to the model as background context when available.
 - **Markdown → blocks** — AI output is parsed from Markdown to HTML and converted into proper Gutenberg blocks (headings, lists, bold, italic, paragraphs).
 - **Review before insert** — Edit generated text in the modal, regenerate if needed, then insert.
-- **WordPress Abilities API** — Registers `prompt-block-writer/generate` and runs via the Abilities API (client-side with REST fallback).
+- **WordPress Abilities API** — Registers `blocksmith-prompts/generate` and runs via the Abilities API (client-side with REST fallback).
 
 ## Requirements
 
@@ -22,8 +22,8 @@ A WordPress block editor plugin that generates post content from a prompt using 
 
 ## Installation
 
-1. Copy the `prompt-block-writer` folder into `wp-content/plugins/`.
-2. Activate **Prompt Block Writer** from the **Plugins** screen.
+1. Copy the `blocksmith-prompts` folder into `wp-content/plugins/`.
+2. Activate **Blocksmith Prompts** from the **Plugins** screen.
 3. Ensure the **AI** plugin is installed and active.
 4. Configure an AI connector (**Settings → Connectors**) with a provider that supports text generation.
 
@@ -44,7 +44,7 @@ If no connector is configured, the plugin shows a notice with a link to **Manage
 ### Setup
 
 ```bash
-cd wp-content/plugins/prompt-block-writer
+cd wp-content/plugins/blocksmith-prompts
 npm install
 ```
 
@@ -60,10 +60,10 @@ After changing `src/index.js`, run `npm run build` and commit the updated `build
 ### Project Structure
 
 ```
-prompt-block-writer/
-├── prompt-block-writer.php   # Bootstrap, ability registration, asset enqueue
+blocksmith-prompts/
+├── blocksmith-prompts.php   # Bootstrap, ability registration, asset enqueue
 ├── includes/
-│   └── Ability.php           # prompt-block-writer/generate ability
+│   └── Ability.php           # blocksmith-prompts/generate ability
 ├── src/
 │   └── index.js              # Block editor UI (modal, panel)
 ├── build/                    # Compiled assets (committed)
@@ -79,12 +79,12 @@ prompt-block-writer/
 composer install
 ```
 
-**Package:** `debabratakarfa/prompt-block-writer`
-**Namespace:** `DebabrataKarfa\PromptBlockWriter`
+**Package:** `debabratakarfa/blocksmith-prompts`
+**Namespace:** `DebabrataKarfa\BlocksmithPrompts`
 
 ### Ability
 
-The registered ability (`prompt-block-writer/generate`) accepts:
+The registered ability (`blocksmith-prompts/generate`) accepts:
 
 | Input | Type | Required | Description |
 |---|---|---|---|
@@ -94,7 +94,7 @@ The registered ability (`prompt-block-writer/generate`) accepts:
 REST endpoint (fallback):
 
 ```
-POST /wp-json/wp-abilities/v1/abilities/prompt-block-writer/generate/run
+POST /wp-json/wp-abilities/v1/abilities/blocksmith-prompts/generate/run
 ```
 
 ## Author
@@ -102,7 +102,7 @@ POST /wp-json/wp-abilities/v1/abilities/prompt-block-writer/generate/run
 **Debabrata Karfa**
 
 - WordPress.org profile: https://profiles.wordpress.org/dkarfa
-- Plugin URI: https://github.com/debabratakarfa/ai.deb.im
+- Plugin URI: https://github.com/debabratakarfa/blocksmith-prompts
 
 ## License
 
